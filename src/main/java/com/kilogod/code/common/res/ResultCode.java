@@ -125,4 +125,9 @@ public interface ResultCode {
      * 权限不够
      */
     String AUTH_NOT_ENOUGH  = "30006";
+
+    /**
+     * 账号不允许登录，请联系管理员
+     */
+    String ACCOUNT_NOT_LOGIN  = "30007";
 }

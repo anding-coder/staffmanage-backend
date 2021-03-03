@@ -23,6 +23,15 @@ import java.util.List;
 public interface IStaffService extends IService<Staff> {
 
     /**
+     * @Author anding
+     * @Date 2021/3/3 23:49
+     * @Param [vo]
+     * @return com.kilogod.code.domain.Staff
+     * @Description 查个人用户信息
+     **/
+    Staff getSelfUser(UserInfoVO vo) throws ValidationException;
+
+    /**
     * 添加人员信息
     *
     * @param staff 人员信息
@@ -82,4 +91,13 @@ public interface IStaffService extends IService<Staff> {
      * @Description 修改用户密码
      **/
     int updatePwd(UserPwdDTO dto) throws ValidationException;
+
+    /**
+     * @Author anding
+     * @Date 2021/3/4 0:08
+     * @Param
+     * @return
+     * @Description 重置密码
+     **/
+    int resetPwd(Staff staff) throws ValidationException;
 }

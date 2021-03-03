@@ -3,8 +3,10 @@ package com.kilogod.code.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.kilogod.code.common.res.ResultData;
+import com.kilogod.code.config.annotation.validateuser.ValidateUser;
 import com.kilogod.code.domain.Staff;
 import com.kilogod.code.domain.dto.StaffQueryDTO;
+import com.kilogod.code.domain.vo.UserInfoVO;
 import com.kilogod.code.service.IStaffService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,6 +33,22 @@ public class StaffController {
     @Autowired
     private IStaffService staffService;
 
+    @GetMapping("/getSelfUser")
+    @ApiOperation(value = "查询个人信息")
+    public ResultData<Staff> getSelfUser(@ValidateUser UserInfoVO vo){
+        ResultData rc = new ResultData();
+        try {
+            Staff staff = staffService.getSelfUser(vo);
+            rc.setData(staff);
+        } catch (ValidationException e) {
+            rc.setError(e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            rc.setErrorMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return rc;
+    }
 
     @PostMapping("/insert")
     @ApiOperation(value = "新增人员信息")

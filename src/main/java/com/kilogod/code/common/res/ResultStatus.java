@@ -29,6 +29,7 @@ public enum ResultStatus {
     QUERY_IS_NULL(ResultCode.QUERY_IS_NULL, "查询数据为空"),
     USER_NOT_NULL(ResultCode.USER_NOT_NULL, "用户名密码不能为空"),
     AUTH_NOT_ENOUGH(ResultCode.AUTH_NOT_ENOUGH, "权限不够"),
+    ACCOUNT_NOT_LOGIN(ResultCode.ACCOUNT_NOT_LOGIN, "账号不允许登录，请联系管理员"),
     ;
 
 

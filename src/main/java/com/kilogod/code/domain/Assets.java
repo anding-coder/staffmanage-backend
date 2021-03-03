@@ -13,7 +13,6 @@ import lombok.experimental.Accessors;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -57,7 +56,9 @@ public class Assets implements Serializable {
     private String username;
 
     @ApiModelProperty(value = "开始使用时间")
-    private LocalDate startTime;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startTime;
 
     @ApiModelProperty(value = "创建时间")
     @CreateTime

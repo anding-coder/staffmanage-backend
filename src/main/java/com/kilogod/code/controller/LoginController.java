@@ -4,6 +4,7 @@ import com.kilogod.code.common.res.ResultData;
 import com.kilogod.code.config.JWTToken;
 import com.kilogod.code.config.LogoutToken;
 import com.kilogod.code.config.annotation.validateuser.ValidateUser;
+import com.kilogod.code.domain.Staff;
 import com.kilogod.code.domain.dto.UserDTO;
 import com.kilogod.code.domain.dto.UserPwdDTO;
 import com.kilogod.code.domain.vo.UserInfoVO;
@@ -104,6 +105,22 @@ public class LoginController {
         try {
             dto.setUserId(vo.getId());
             rc.setData(userService.updatePwd(dto));
+        } catch (ValidationException e) {
+            rc.setError(e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            rc.setError();
+            e.printStackTrace();
+        }
+        return rc;
+    }
+
+    @PutMapping("/resetPwd")
+    @ApiOperation(value = "重置密码")
+    public ResultData resetPwd(@RequestBody Staff staff){
+        ResultData rc = new ResultData();
+        try {
+            rc.setData(userService.resetPwd(staff));
         } catch (ValidationException e) {
             rc.setError(e.getMessage());
             e.printStackTrace();

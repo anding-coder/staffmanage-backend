@@ -41,6 +41,12 @@ public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements
     private LoginLogMapper logMapper;
 
     @Override
+    public Staff getSelfUser(UserInfoVO vo) throws ValidationException {
+        Staff s = this.getOne(new QueryWrapper<Staff>().eq("id", vo.getId()));
+        return s;
+    }
+
+    @Override
     public int insert(Staff staff) throws ValidationException {
         if (StringUtils.isBlank(staff.getPassword())){
             staff.setPassword(MD5Utils.encrypt(staff.getStaffid(),"123456"));
@@ -119,6 +125,9 @@ public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements
         if (null==user||"".equals(user)){
             throw new ValidationException(ResultCode.USERID_USERPASSWORD_FAIL);
         }
+        if ("1".equals(user.getIsDel())||"0".equals(user.getOnJob())){
+            throw new ValidationException(ResultCode.ACCOUNT_NOT_LOGIN);
+        }
         if (!MD5Utils.encrypt(userDTO.getStaffid(),userDTO.getPassword()).equals(user.getPassword())){
             throw new ValidationException(ResultCode.USERID_USERPASSWORD_FAIL);
         }
@@ -173,5 +182,15 @@ public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements
             throw new ValidationException(ResultCode.UPDATE_FAIL);
         }
         return update;
+    }
+
+    @Override
+    public int resetPwd(Staff staff) throws ValidationException {
+        staff.setPassword(MD5Utils.encrypt(staff.getStaffid(),"123456"));
+        int i = mapper.updateById(staff);
+        if (i<1){
+            throw new ValidationException(ResultCode.UPDATE_FAIL);
+        }
+        return i;
     }
 }

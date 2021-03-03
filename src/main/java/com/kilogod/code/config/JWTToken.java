@@ -50,7 +50,6 @@ public class JWTToken {
                 /**设置 载荷 Payload*/
                 .withClaim("id",userInfo.getId())
                 .withClaim("staffid",userInfo.getStaffid())
-                .withClaim("phone",userInfo.getPhone())
                 .withClaim("role",userInfo.getRole())
                 /**设置 载荷 签名是有谁生成 例如 服务器*/
                 .withIssuer("sendticket")
@@ -93,15 +92,13 @@ public class JWTToken {
 
 
             Integer id = claims.get("id").asInt();
-            String phone = claims.get("phone").asString();
             String role = claims.get("role").asString();
             String staffid = claims.get("staffid").asString();
 
-            if (id==0||StringUtils.isBlank(phone)||StringUtils.isBlank(role)||StringUtils.isBlank(staffid)){
+            if (id==0||StringUtils.isBlank(role)||StringUtils.isBlank(staffid)){
                 return null;
             }
             userInfo.setId(id);
-            userInfo.setPhone(phone);
             userInfo.setRole(role);
             userInfo.setStaffid(staffid);
         }catch (Exception e){
