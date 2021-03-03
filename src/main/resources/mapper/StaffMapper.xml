@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kilogod.code.mapper.StaffMapper">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.kilogod.code.domain.Staff">
+                    <id column="id" property="id"/>
+                    <result column="staffid" property="staffid"/>
+                    <result column="password" property="password"/>
+                    <result column="name" property="name"/>
+                    <result column="sex" property="sex"/>
+                    <result column="dept" property="dept"/>
+                    <result column="email" property="email"/>
+                    <result column="phone" property="phone"/>
+                    <result column="idcard" property="idcard"/>
+                    <result column="nativeplace" property="nativeplace"/>
+                    <result column="residence" property="residence"/>
+                    <result column="political" property="political"/>
+                    <result column="education" property="education"/>
+                    <result column="graduation_date" property="graduationDate"/>
+                    <result column="first_workdate" property="firstWorkdate"/>
+                    <result column="company_workdate" property="companyWorkdate"/>
+                    <result column="contract_starttime" property="contractStarttime"/>
+                    <result column="contract_endtime" property="contractEndtime"/>
+                    <result column="endtime" property="endtime"/>
+                    <result column="equipment" property="equipment"/>
+                    <result column="on_job" property="onJob"/>
+                    <result column="is_del" property="isDel"/>
+                    <result column="role" property="role"/>
+                    <result column="create_time" property="createTime"/>
+                    <result column="update_time" property="updateTime"/>
+                    <result column="ext1" property="ext1"/>
+                    <result column="ext2" property="ext2"/>
+                    <result column="ext3" property="ext3"/>
+                    <result column="ext4" property="ext4"/>
+        </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+            id, staffid, password, name, sex, dept, email, phone, idcard, nativeplace, residence, political, education, graduation_date, first_workdate, company_workdate, contract_starttime, contract_endtime, endtime, equipment, on_job, is_del, role, create_time, update_time, ext1, ext2, ext3, ext4
+        </sql>
+
+</mapper>
