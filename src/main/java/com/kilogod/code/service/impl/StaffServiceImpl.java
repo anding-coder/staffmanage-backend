@@ -14,6 +14,7 @@ import com.kilogod.code.domain.vo.UserVO;
 import com.kilogod.code.mapper.LoginLogMapper;
 import com.kilogod.code.mapper.StaffMapper;
 import com.kilogod.code.service.IStaffService;
+import com.kilogod.code.util.DateUtils;
 import com.kilogod.code.util.IpUtils;
 import com.kilogod.code.util.MD5Utils;
 import org.apache.commons.lang3.StringUtils;
@@ -23,6 +24,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.ValidationException;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -80,6 +82,30 @@ public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements
 
     @Override
     public List<Staff> getList(StaffQueryDTO dto) throws ValidationException {
+        List<Staff> list = this.list();
+        for (Staff staff : list) {
+            long l = DateUtils.differSecond(staff.getContractEndtime(), new Date())/(60*60*24);
+            if (l<30){
+                staff.setEndtime("不足一个月");
+            }
+            if (l>=30&&l<180){
+                staff.setEndtime("不足半年");
+            }
+            if (l>=180&&l<365){
+                staff.setEndtime("不足一年");
+            }
+            if (l>=365&&l<1095){
+                staff.setEndtime("大于一年");
+            }
+            if (l>=1095&&l<1825){
+                staff.setEndtime("大于三年");
+            }
+            if (l>=1825){
+                staff.setEndtime("大于五年");
+            }
+            mapper.updateById(staff);
+        }
+
         List<Staff> lists = mapper.selectList(new QueryWrapper<Staff>()
                     .like(StringUtils.isNotBlank(dto.getStaffid()),"staffid",dto.getStaffid())
                     .like(StringUtils.isNotBlank(dto.getPassword()),"password",dto.getPassword())
@@ -95,7 +121,7 @@ public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements
                     .like(StringUtils.isNotBlank(dto.getEducation()),"education",dto.getEducation())
                     .eq(null!=dto.getGraduationDate(),"graduation_date",dto.getGraduationDate())
                     .eq(null!=dto.getFirstWorkdate(),"first_workdate",dto.getFirstWorkdate())
-                    .eq(null!=dto.getCompanyWorkdate(),"company_workdate",dto.getCompanyWorkdate())
+                    .like(null!=dto.getCompanyWorkdate(),"company_workdate",dto.getCompanyWorkdate())
                     .eq(null!=dto.getContractStarttime(),"contract_starttime",dto.getContractStarttime())
                     .eq(null!=dto.getContractEndtime(),"contract_endtime",dto.getContractEndtime())
                     .like(StringUtils.isNotBlank(dto.getEndtime()),"endtime",dto.getEndtime())

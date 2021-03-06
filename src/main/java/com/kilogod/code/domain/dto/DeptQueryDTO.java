@@ -22,6 +22,18 @@ public class DeptQueryDTO extends BaseQuery {
     @ApiModelProperty(value = "部门名称")
     private String deptName;
 
+    @ApiModelProperty(value = "部门主任")
+    private String director;
+
+    @ApiModelProperty(value = "部门副主任")
+    private String deputyDirector;
+
+    @ApiModelProperty(value = "部门项目经理")
+    private String projectmanager;
+
+    @ApiModelProperty(value = "部门地址")
+    private String address;
+
 
 
 

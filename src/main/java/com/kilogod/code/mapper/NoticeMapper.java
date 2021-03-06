@@ -9,7 +9,6 @@ import com.kilogod.code.domain.Notice;
  * </p>
  *
  * @author Anding
- * @since 2021-03-03
  */
 public interface NoticeMapper extends BaseMapper<Notice> {
 

@@ -9,7 +9,6 @@ import com.kilogod.code.domain.Dept;
  * </p>
  *
  * @author Anding
- * @since 2021-03-03
  */
 public interface DeptMapper extends BaseMapper<Dept> {
 

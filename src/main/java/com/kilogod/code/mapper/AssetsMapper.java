@@ -9,7 +9,6 @@ import com.kilogod.code.domain.Assets;
  * </p>
  *
  * @author Anding
- * @since 2021-03-03
  */
 public interface AssetsMapper extends BaseMapper<Assets> {
 

@@ -58,6 +58,10 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
     public List<Dept> getList(DeptQueryDTO dto) throws ValidationException {
         List<Dept> lists = mapper.selectList(new QueryWrapper<Dept>()
                     .like(StringUtils.isNotBlank(dto.getDeptName()),"dept_name",dto.getDeptName())
+                    .like(StringUtils.isNotBlank(dto.getDirector()),"director",dto.getDirector())
+                    .like(StringUtils.isNotBlank(dto.getDeputyDirector()),"deputy_director",dto.getDeputyDirector())
+                    .like(StringUtils.isNotBlank(dto.getProjectmanager()),"projectmanager",dto.getProjectmanager())
+                    .like(StringUtils.isNotBlank(dto.getAddress()),"address",dto.getAddress())
         );
         return lists;
     }

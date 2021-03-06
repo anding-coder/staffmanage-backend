@@ -6,6 +6,10 @@
         <resultMap id="BaseResultMap" type="com.kilogod.code.domain.Dept">
                     <id column="id" property="id"/>
                     <result column="dept_name" property="deptName"/>
+                    <result column="director" property="director"/>
+                    <result column="deputy_director" property="deputyDirector"/>
+                    <result column="projectmanager" property="projectmanager"/>
+                    <result column="address" property="address"/>
                     <result column="create_time" property="createTime"/>
                     <result column="update_time" property="updateTime"/>
                     <result column="ext1" property="ext1"/>
@@ -14,7 +18,7 @@
 
         <!-- 通用查询结果列 -->
         <sql id="Base_Column_List">
-            id, dept_name, create_time, update_time, ext1, ext2
+            id, dept_name, director, deputy_director, projectmanager, address, create_time, update_time, ext1, ext2
         </sql>
 
 </mapper>

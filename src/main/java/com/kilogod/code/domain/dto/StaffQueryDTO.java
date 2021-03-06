@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * <p>
@@ -58,19 +58,19 @@ public class StaffQueryDTO extends BaseQuery {
     private String education;
 
     @ApiModelProperty(value = "毕业时间")
-    private LocalDate graduationDate;
+    private Date graduationDate;
 
     @ApiModelProperty(value = "第一次参加工作的时间")
-    private LocalDate firstWorkdate;
+    private Date firstWorkdate;
 
     @ApiModelProperty(value = "进入本公司工作的时间")
-    private LocalDate companyWorkdate;
+    private String companyWorkdate;
 
     @ApiModelProperty(value = "目前劳动合同开始的时间")
-    private LocalDate contractStarttime;
+    private Date contractStarttime;
 
     @ApiModelProperty(value = "目前劳动合同结束时间")
-    private LocalDate contractEndtime;
+    private Date contractEndtime;
 
     @ApiModelProperty(value = "距离劳动合同结束时间")
     private String endtime;
