@@ -88,7 +88,11 @@ public class StaffQueryDTO extends BaseQuery {
     private String role;
 
 
+    @ApiModelProperty(value = "合同编号")
+    private String ext1;
 
+    @ApiModelProperty(value = "合同存放地址")
+    private String ext2;
 
 
 

@@ -129,6 +129,8 @@ public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements
                     .like(StringUtils.isNotBlank(dto.getOnJob()),"on_job",dto.getOnJob())
                     .like(StringUtils.isNotBlank(dto.getIsDel()),"is_del",dto.getIsDel())
                     .like(StringUtils.isNotBlank(dto.getRole()),"role",dto.getRole())
+                    .like(StringUtils.isNotBlank(dto.getExt1()),"ext1",dto.getExt1())
+                    .like(StringUtils.isNotBlank(dto.getExt2()),"ext2",dto.getExt2())
         );
         return lists;
     }
